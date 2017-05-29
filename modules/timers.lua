@@ -303,3 +303,9 @@ function MotA_Timers:RearrangeBars()
 		count = count + 1
 	end
 end
+
+-- Toggle timers ---------------------------------------------------------------
+function MotA_Timers_Toggle()
+	MotA_Timers.parent.savedVariables.timers.isHidden = not MotA_Timers.parent.savedVariables.timers.isHidden
+	MotA_BiteTimersContainer:SetHidden(MotA_Timers.parent.savedVariables.timers.isHidden)
+end

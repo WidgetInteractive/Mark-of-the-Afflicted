@@ -40,7 +40,7 @@ core/fonts.lua
 core/helpers.lua
 core/settings.lua
 core/sounds.lua
-;core/bindings.xml
+core/bindings.xml
 
 ; Modules
 modules/timers.lua

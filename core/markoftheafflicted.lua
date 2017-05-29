@@ -7,8 +7,8 @@ MOTA_WEBSITE = "http://www.esoui.com/downloads/info1670-Scholar.html"
 local MotA = ZO_Object:New()
 
 -- Hotkey definition -----------------------------------------------------------
---ZO_CreateStringId("SI_BINDING_NAME_MOTA_TITLE", GetString(MOTA_TITLE))
---ZO_CreateStringId("SI_BINDING_NAME_MOTA_TOGGLE_TIMERS", GetString(MOTA_KEYBIND_TOGGLE))
+ZO_CreateStringId("SI_BINDING_NAME_MOTA_TITLE", GetString(MOTA_TITLE))
+ZO_CreateStringId("SI_BINDING_NAME_MOTA_TOGGLE_TIMERS", GetString(MOTA_KEYBIND_TOGGLE))
 
 -- Utilities -------------------------------------------------------------------
 function MotA:SwapSavedVars(useAccountWide)
