@@ -54,10 +54,21 @@ function MotA_Timers:Initialize(parent)
 			end
 		end
 
-		local timers = {}
+		local timers = MotA_Timers.parent.savedTimers.timers
 
-		for k, v in pairs(MotA_Timers.parent.savedTimers.timers) do
-			MotA_Timers:AddBiteTimer(v["type"], v["char"], v["time"], v["stage"])
+		table.sort(timers, function(t1, t2)
+			if t1[1] < t2[1] then
+				return true
+			end
+			return false
+		end)
+
+		for k, v in pairs(timers) do
+			if not MotA_Timers.parent.savedVariables.timers.showAll and k == uid then
+				MotA_Timers:AddBiteTimer(v["type"], v["char"], v["time"], v["stage"])
+			elseif MotA_Timers.parent.savedVariables.timers.showAll then
+				MotA_Timers:AddBiteTimer(v["type"], v["char"], v["time"], v["stage"])
+			end
 		end
 
 		MotA_BiteTimersContainer:RegisterForEvent(EVENT_PLAYER_COMBAT_STATE, function(eventCode, inCombat) MotA_Timers:ShowTimers(inCombat) end)

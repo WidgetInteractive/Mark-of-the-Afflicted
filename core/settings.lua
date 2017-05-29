@@ -74,6 +74,17 @@ function MotA_Settings:CreateMenu(parent)
 			controls = {
 				{
 					type    = "checkbox",
+					name    = GetString(MOTA_TIMERS_SHOW_ALL),
+					tooltip = GetString(MOTA_TIMERS_SHOW_ALL_TIP),
+					warning = GetString(MOTA_RELOAD_WARNING),
+					default = false,
+					getFunc = function() return parent.savedVariables.timers.showAll end,
+					setFunc = function(showAll) parent.savedVariables.timers.showAll = showAll
+						ReloadUI("ingame")
+					end
+				},
+				{
+					type    = "checkbox",
 					name    = GetString(MOTA_TIMERS_HIDE_IN_COMBAT),
 					tooltip = GetString(MOTA_TIMERS_HIDE_IN_COMBAT_TIP),
 					default = true,
@@ -270,18 +281,6 @@ function MotA_Settings:CreateMenu(parent)
 					default = GetString(MOTA_OPTION_FILL),
 					getFunc = function() return parent.savedVariables.timers.timerAction end,
 					setFunc = function(timerAction) parent.savedVariables.timers.timerAction = timerAction
-						ReloadUI("ingame")
-					end
-				},
-				{
-					type    = "dropdown",
-					name    = GetString(MOTA_TIMERS_SORT),
-					tooltip = GetString(MOTA_TIMERS_SORT_TIP),
-					warning = GetString(MOTA_RELOAD_WARNING),
-					choices = {GetString(MOTA_OPTION_DESCENDING), GetString(MOTA_OPTION_ASCENDING)},
-					default = GetString(MOTA_OPTION_DESCENDING),
-					getFunc = function() return parent.savedVariables.timers.sort end,
-					setFunc = function(sort) parent.savedVariables.timers.sort = sort
 						ReloadUI("ingame")
 					end
 				},

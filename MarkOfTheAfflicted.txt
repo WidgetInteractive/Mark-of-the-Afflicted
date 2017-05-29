@@ -9,7 +9,7 @@
 ## Version: 1.0.0
 ## Author: Widget Interactive
 ## APIVersion: 100019
-## SavedVariables: MotA_SavedVariables, MotA_SavedTimers
+## SavedVariables: MotA_SavedVariables MotA_SavedTimers
 ## OptionalDependsOn: LibAddonMenu-2.0
 
 ; Localization

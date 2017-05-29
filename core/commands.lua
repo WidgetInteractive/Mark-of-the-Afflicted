@@ -24,7 +24,6 @@ function MotA_Slash_Commands:Initialize(parent)
 			if command == "test" then
 				--local uid = GetCurrentCharacterId()
 				--d(parent.savedVariables.timers.list[uid])
-				d(MotA_Timers.parent.savedTimers)
 			else
 				MotA_Slash_Commands:DisplayGeneralHelp(parent)
 			end

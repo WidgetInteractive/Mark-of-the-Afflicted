@@ -24,6 +24,8 @@ local strings = {
 	MOTA_TIMERS_TITLE                       = "Bite Timer Settings",
 	MOTA_TIMERS_LABEL_HEADER                = "Label Settings",
 	MOTA_TIMERS_BAR_COLORS_HEADER           = "Timer Bar Color Settings",
+	MOTA_TIMERS_SHOW_ALL                    = "Show All Timers",
+	MOTA_TIMERS_SHOW_ALL_TIP                = "Enable this setting to show timers for all vampire and werewolf characters.",
 	MOTA_TIMERS_DISPLAY_HEADER              = "Display Settings",
 	MOTA_TIMERS_LABEL_FONT                  = "Label Font",
 	MOTA_TIMERS_LABEL_FONT_TIP              = "Set the font used for timer labels.",
@@ -53,8 +55,6 @@ local strings = {
 	MOTA_TIMERS_VA_BACKGROUND_COLOR_TIP     = "Set the color used for the background of vampire timer bars.",
 	MOTA_TIMERS_VA_GLOSS_COLOR              = "Vampire Timers - Gloss",
 	MOTA_TIMERS_VA_GLOSS_COLOR_TIP          = "Set the color used for the gloss (highlight) of vampire timer bars.",
-	MOTA_TIMERS_SORT                        = "Sort Order",
-	MOTA_TIMERS_SORT_TIP                    = "Set whether you prefer timers to be sorted by time left ascending or descending.",
 	MOTA_TIMERS_LOCK_UI                     = "Lock UI",
 	MOTA_TIMERS_LOCK_UI_TIP                 = "Enable this setting to prevent the timers window from being moved.",
 	MOTA_TIMERS_SCALE                       = "UI Scale",
@@ -77,8 +77,6 @@ local strings = {
 	MOTA_OPTION_ANNOUNCEMENT           = "Announcement",
 	MOTA_OPTION_LEFT                   = "Left",
 	MOTA_OPTION_RIGHT                  = "Right",
-	MOTA_OPTION_ASCENDING              = "Ascending",
-	MOTA_OPTION_DESCENDING             = "Descending",
 	MOTA_OPTION_BOLD                   = "Bold",
 	MOTA_OPTION_MEDIUM                 = "Medium",
 	MOTA_OPTION_ANTIQUE                = "Antique",
@@ -94,7 +92,7 @@ local strings = {
 	MOTA_OPTION_THIN_OUTLINE           = "Thin Outline",
 	MOTA_OPTION_OUTLINE                = "Outline",
 	MOTA_OPTION_FILL                   = "Fill",
-	MOTA_OPTION_DRAIN                  = "Drain",
+	MOTA_OPTION_DRAIN                  = "Drain"
 }
 for stringId, stringValue in pairs(strings) do
 	ZO_CreateStringId(stringId, stringValue)

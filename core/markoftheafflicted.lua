@@ -39,6 +39,7 @@ function MotA:New()
 				x        = 0,
 				y        = 0
 			},
+			showAll               = false,
 			hideInCombat          = true,
 			notifications         = GetString(MOTA_OPTION_NONE),
 			notificationSound     = "Smithing_Finish_Research",
@@ -57,7 +58,6 @@ function MotA:New()
 			wwGlossColor          = {1, 1, 1, 1},
 			labelAlignment        = GetString(MOTA_OPTION_LEFT),
 			timerAction           = GetString(MOTA_OPTION_FILL),
-			sort                  = GetString(MOTA_OPTION_DESCENDING),
 			lockUI                = false,
 			scale                 = 0.7,
 			spacing               = 50
@@ -69,8 +69,8 @@ function MotA:New()
 	}
 
 	self.savedVariables = {}
-	self.savedAccount   = ZO_SavedVars:NewAccountWide("MotA_SavedVariables", 1.9, nil, self.defaults)
-	self.savedCharacter = ZO_SavedVars:New("MotA_SavedVariables", 1.9, nil, self.defaults)
+	self.savedAccount   = ZO_SavedVars:NewAccountWide("MotA_SavedVariables", 1.12, nil, self.defaults)
+	self.savedCharacter = ZO_SavedVars:New("MotA_SavedVariables", 1.12, nil, self.defaults)
 	self.savedTimers    = ZO_SavedVars:NewAccountWide("MotA_SavedTimers", 1.9, nil, self.defaultTimers)
 	self:SwapSavedVars(self.savedAccount.accountWide)
 
