@@ -124,6 +124,7 @@ function MotA_Timer_Bar:CreateNewBar(biteType, charName, readyTime, vampireStage
 	self.timeLeftLabel:SetColor(unpack(MotA_Timers.parent.savedVariables.timers.timeColor))
 
 	self.biteType      = biteType
+	self.uid           = GetCurrentCharacterId()
 	self.charName      = charName
 	self.timeRemaining = readyTime - GetTimeStamp()
 	self.duration      = 604800
@@ -206,6 +207,31 @@ function MotA_Timer_Bar:Update(time)
 	if time > self.timeout then
 		self:Completed()
 		return
+	end
+
+	local _, _, vampireReadyTime = MotA_Helpers:IsVampire()
+	local _, _, werewolfReadyTime = MotA_Helpers:IsWerewolf()
+
+	if self.biteType == "vampire" then
+		self.vampireStage = MotA_Helpers:GetVampireStage()
+
+		MotA_Timers.parent.savedTimers.timers[self.uid] = {
+			char  = GetUnitName("player"),
+			type  = "vampire",
+			stage = self.vampireStage,
+			time  = vampireReadyTime
+		}
+	else
+		MotA_Timers.parent.savedTimers.timers[self.uid] = {
+			char  = GetUnitName("player"),
+			type  = "werewolf",
+			stage = nil,
+			time  = werewolfReadyTime
+		}
+	end
+
+	if self.biteType == "vampire" then
+		self.label:SetText(string.upper(zo_strformat("<<1>> - <<2>> <<3>>", self.charName, "Stage", self.vampireStage)))
 	end
 
 	if time > self.nextBarUpdate then
