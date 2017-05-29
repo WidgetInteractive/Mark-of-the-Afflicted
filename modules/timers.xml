@@ -16,9 +16,6 @@
 				<Label name="$(parent)TimeLeft" font="$(MEDIUM_FONT)|14|thick-outline" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_SELECTED">
 					<Anchor point="CENTER" />
 				</Label>
-				<Button name="$(parent)Close" inherits="ZO_CloseButton" hidden="false">
-					<Anchor point="RIGHT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="-8" />
-				</Button>
 			</Controls>
 		</Control>
 	</Controls>

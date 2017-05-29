@@ -69,9 +69,9 @@ function MotA:New()
 	}
 
 	self.savedVariables = {}
-	self.savedAccount   = ZO_SavedVars:NewAccountWide("MotA_SavedVariables", 1.8, nil, self.defaults)
-	self.savedCharacter = ZO_SavedVars:New("MotA_SavedVariables", 1.8, nil, self.defaults)
-	self.savedTimers    = ZO_SavedVars:NewAccountWide("MotA_SavedTimers", 1.8, nil, self.defaultTimers)
+	self.savedAccount   = ZO_SavedVars:NewAccountWide("MotA_SavedVariables", 1.9, nil, self.defaults)
+	self.savedCharacter = ZO_SavedVars:New("MotA_SavedVariables", 1.9, nil, self.defaults)
+	self.savedTimers    = ZO_SavedVars:NewAccountWide("MotA_SavedTimers", 1.9, nil, self.defaultTimers)
 	self:SwapSavedVars(self.savedAccount.accountWide)
 
 	self:Initialize()

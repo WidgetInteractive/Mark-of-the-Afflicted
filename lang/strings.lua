@@ -4,6 +4,7 @@ local strings = {
 
 	-- Common use
 	MOTA_RELOAD_WARNING = "Changing this setting will reload the UI!",
+	MOTA_TIMERS_READY   = "Bite Ready",
 
 	-- Keybindings
 	MOTA_KEYBIND_TOGGLE = "Toggle display of timers",

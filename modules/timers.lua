@@ -57,9 +57,7 @@ function MotA_Timers:Initialize(parent)
 		local timers = {}
 
 		for k, v in pairs(MotA_Timers.parent.savedTimers.timers) do
-			if v["time"] - GetTimeStamp() > 0 then
-				MotA_Timers:AddBiteTimer(v["type"], v["char"], v["time"], v["stage"])
-			end
+			MotA_Timers:AddBiteTimer(v["type"], v["char"], v["time"], v["stage"])
 		end
 
 		MotA_BiteTimersContainer:RegisterForEvent(EVENT_PLAYER_COMBAT_STATE, function(eventCode, inCombat) MotA_Timers:ShowTimers(inCombat) end)
@@ -105,9 +103,6 @@ function MotA_Timer_Bar:CreateNewBar(biteType, charName, readyTime, vampireStage
 	self.bar:ClearAnchors()
 	self.bar:SetAnchor(TOP, MotA_BiteTimersContainer, TOP, 0, (count*MotA_Timers.parent.savedVariables.timers.spacing)+30)
 	MotA_BiteTimersContainer:SetHeight((count+1)*52)
-	self.closeButton = self.bar:GetNamedChild("Close")
-	self.closeButton:SetHidden(true)
-	self.closeButton:SetHandler("OnClicked", function() self:Destroy() end)
 
 	self.timeLeftLabel = self.bar:GetNamedChild("TimeLeft")
 	self.progressBar   = self.bar:GetNamedChild("Bar")
@@ -138,15 +133,12 @@ function MotA_Timer_Bar:CreateNewBar(biteType, charName, readyTime, vampireStage
 	local now = GetGameTimeMilliseconds()/1000
 
 	self.label:ClearAnchors()
-	self.closeButton:ClearAnchors()
 
 	if MotA_Timers.parent.savedVariables.timers.labelAlignment == GetString(MOTA_OPTION_RIGHT) then
-		self.closeButton:SetAnchor(RIGHT, self.bar, LEFT, -8)
 		self.label:SetAnchor(BOTTOMRIGHT, self.progressBar, TOPRIGHT, 0, -4)
 		self.progressBar:SetBarAlignment(BAR_ALIGNMENT_REVERSE)
 		self.progressBar:GetNamedChild("Gloss"):SetBarAlignment(BAR_ALIGNMENT_REVERSE)
 	else
-		self.closeButton:SetAnchor(LEFT, self.bar, RIGHT, 8)
 		self.label:SetAnchor(BOTTOMLEFT, self.progressBar, TOPLEFT, 0, -4)
 		self.progressBar:SetBarAlignment(BAR_ALIGNMENT_NORMAL)
 		self.progressBar:GetNamedChild("Gloss"):SetBarAlignment(BAR_ALIGNMENT_NORMAL)
@@ -201,7 +193,7 @@ end
 -- Update bar ------------------------------------------------------------------
 function MotA_Timer_Bar:Update(time)
 	if time > self.timeout then
-		--self:Completed()
+		self:Completed()
 		return
 	end
 
@@ -286,21 +278,43 @@ function MotA_Timers:RearrangeBars()
 		MotA_ResearchTimersContainer:SetHeight((count+1)*MotA_Timers.parent.savedVariables.timers.spacing)
 
 		self.timers[self.timerKeys[i]].label:ClearAnchors()
-		self.timers[self.timerKeys[i]].closeButton:ClearAnchors()
 
 		if MotA_Timers.parent.savedVariables.timers.labelAlignment == GetString(MOTA_OPTION_RIGHT) then
-			self.timers[self.timerKeys[i]].closeButton:SetAnchor(RIGHT, self.timers[self.timerKeys[i]].bar, LEFT, -8)
 			self.timers[self.timerKeys[i]].label:SetAnchor(BOTTOMRIGHT, self.timers[self.timerKeys[i]].progressBar, TOPRIGHT, 0, -4)
 			self.timers[self.timerKeys[i]].progressBar:SetBarAlignment(BAR_ALIGNMENT_REVERSE)
 			self.timers[self.timerKeys[i]].progressBar:GetNamedChild("Gloss"):SetBarAlignment(BAR_ALIGNMENT_REVERSE)
 		else
-			self.timers[self.timerKeys[i]].closeButton:SetAnchor(LEFT, self.timers[self.timerKeys[i]].bar, RIGHT, 8)
 			self.timers[self.timerKeys[i]].label:SetAnchor(BOTTOMLEFT, self.timers[self.timerKeys[i]].progressBar, TOPLEFT, 0, -4)
 			self.timers[self.timerKeys[i]].progressBar:SetBarAlignment(BAR_ALIGNMENT_NORMAL)
 			self.timers[self.timerKeys[i]].progressBar:GetNamedChild("Gloss"):SetBarAlignment(BAR_ALIGNMENT_NORMAL)
 		end
 
 		count = count + 1
+	end
+end
+
+-- Complete --------------------------------------------------------------------
+function MotA_Timer_Bar:Completed()
+	local uid = GetCurrentCharacterId();
+
+	self.bar:SetHandler("OnUpdate", nil)
+	self.progressBar:SetMinMax(0, 1)
+
+	if MotA_Timers.parent.savedVariables.timers.timerAction == GetString(MOTA_OPTION_DRAIN) then
+		self.progressBar:SetValue(0)
+	else
+		self.progressBar:SetValue(1)
+	end
+
+	self.completed = true
+
+	self.timeLeftLabel:SetText(GetString(MOTA_TIMERS_READY) .. "!")
+
+	if MotA_Timers.parent.savedVariables.timers.notifications == "Chat" then
+		PlaySound(MotA_Timers.parent.savedVariables.timers.notificationSound)
+		CHAT_SYSTEM:AddMessage(colorWidget .. "[Mark of the Afflicted] " .. colorYellow .. GetString(MOTA_TIMERS_READY) .. ": " .. self.charName)
+	elseif Scholar_Timers.parent.savedVariables.timers.notifications == "Announcement" then
+		CENTER_SCREEN_ANNOUNCE:AddMessage(0, CSA_EVENT_SMALL_TEXT, MotA_Timers.parent.savedVariables.timers.notificationSound, GetString(MOTA_TIMERS_READY) .. self.charName)
 	end
 end
 
