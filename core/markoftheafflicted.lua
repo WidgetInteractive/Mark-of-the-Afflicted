@@ -1,7 +1,7 @@
 -- Constants -------------------------------------------------------------------
 MOTA_NAME    = "MarkOfTheAfflicted"
 MOTA_VERSION = "1.0.0"
-MOTA_WEBSITE = "http://www.esoui.com/downloads/info1670-Scholar.html"
+MOTA_WEBSITE = "http://www.esoui.com/downloads/info1707-MarkOfTheAfflicted.html"
 
 -- Local variables -------------------------------------------------------------
 local MotA = ZO_Object:New()
