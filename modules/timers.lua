@@ -302,7 +302,7 @@ end
 -- Rearrange bars --------------------------------------------------------------
 function MotA_Timers:RearrangeBars()
 	if #self.timerKeys == 0 then
-		MotA_ResearchTimersContainer:SetHeight(1)
+		MotA_BiteTimersContainer:SetHeight(1)
 		return
 	end
 
@@ -310,9 +310,9 @@ function MotA_Timers:RearrangeBars()
 
 	for i=1, #self.timerKeys do
 		self.timers[self.timerKeys[i]].bar:ClearAnchors()
-		self.timers[self.timerKeys[i]].bar:SetAnchor(TOP, MotA_ResearchTimersContainer, TOP, 0, (count*MotA_Timers.parent.savedVariables.timers.spacing)+30)
+		self.timers[self.timerKeys[i]].bar:SetAnchor(TOP, MotA_BiteTimersContainer, TOP, 0, (count*MotA_Timers.parent.savedVariables.timers.spacing)+30)
 
-		MotA_ResearchTimersContainer:SetHeight((count+1)*MotA_Timers.parent.savedVariables.timers.spacing)
+		MotA_BiteTimersContainer:SetHeight((count+1)*MotA_Timers.parent.savedVariables.timers.spacing)
 
 		self.timers[self.timerKeys[i]].label:ClearAnchors()
 

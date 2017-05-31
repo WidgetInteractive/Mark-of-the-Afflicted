@@ -305,7 +305,7 @@ function MotA_Settings:CreateMenu(parent)
 					decimals = 1,
 					getFunc  = function() return parent.savedVariables.timers.scale end,
 					setFunc  = function(scale) parent.savedVariables.timers.scale = scale
-						MotA_ResearchTimersContainer:SetScale(scale)
+						MotA_BiteTimersContainer:SetScale(scale)
 					end
 				},
 				{
