@@ -350,7 +350,7 @@ function MotA_Timer_Bar:Completed()
 	if MotA_Timers.parent.savedVariables.timers.notifications == "Chat" then
 		PlaySound(MotA_Timers.parent.savedVariables.timers.notificationSound)
 		CHAT_SYSTEM:AddMessage(colorWidget .. "[Mark of the Afflicted] " .. colorYellow .. GetString(MOTA_TIMERS_READY) .. ": " .. self.charName)
-	elseif Scholar_Timers.parent.savedVariables.timers.notifications == "Announcement" then
+	elseif MotA_Timers.parent.savedVariables.timers.notifications == "Announcement" then
 		CENTER_SCREEN_ANNOUNCE:AddMessage(0, CSA_EVENT_SMALL_TEXT, MotA_Timers.parent.savedVariables.timers.notificationSound, GetString(MOTA_TIMERS_READY) .. self.charName)
 	end
 end
