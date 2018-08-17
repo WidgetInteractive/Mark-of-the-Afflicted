@@ -6,9 +6,9 @@
 
 ## Title: Mark Of The Afflicted
 ## Description: This addon provides a variety of useful features for those running vampires or werewolves
-## Version: 1.0.2
+## Version: 1.0.3
 ## Author: Widget Interactive
-## APIVersion: 100019
+## APIVersion: 100024
 ## SavedVariables: MotA_SavedVariables MotA_SavedTimers
 ## OptionalDependsOn: LibAddonMenu-2.0
 
